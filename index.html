@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+    <title>Jigsaw Puzzle</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div id="app">
+        <!-- Header -->
+        <header class="header">
+            <div class="header-content">
+                <h1>🧩 Jigsaw Puzzle</h1>
+                <span class="player-name" id="playerName"></span>
+            </div>
+        </header>
+
+        <!-- Main Menu -->
+        <div id="menuScreen" class="screen active">
+            <div class="menu-container">
+                <div class="menu-title">
+                    <span class="puzzle-icon">🧩</span>
+                    <h2>Welcome, <span id="welcomeName">Player</span>!</h2>
+                    <p class="menu-subtitle">Choose your puzzle</p>
+                </div>
+                
+                <div class="player-stats" id="playerStats">
+                    <!-- Stats will be populated by JS -->
+                </div>
+                
+                <div class="difficulty-selector">
+                    <label>Difficulty:</label>
+                    <div class="difficulty-buttons">
+                        <button class="diff-btn active" data-pieces="9">Easy (3×3)</button>
+                        <button class="diff-btn" data-pieces="36">Medium (6×6)</button>
+                        <button class="diff-btn" data-pieces="100">Hard (10×10)</button>
+                        <button class="diff-btn" data-pieces="256">Expert (16×16)</button>
+                    </div>
+                </div>
+
+                <div class="image-gallery">
+                    <div class="gallery-header">
+                        <h3>Puzzles</h3>
+                        <button class="random-btn" id="randomBtn">
+                            <span>🎲</span> Random
+                        </button>
+                    </div>
+                    <div class="gallery-grid" id="defaultGallery">
+                        <!-- Default images will be loaded here -->
+                    </div>
+                </div>
+
+                <div class="custom-image-section" style="display: none;">
+                    <button class="import-btn" id="importBtn">
+                        <span class="import-icon">📁</span>
+                        Import Your Own Image
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Game Screen -->
+        <div id="gameScreen" class="screen">
+            <div class="game-header">
+                <button class="back-btn" id="backBtn">← Back</button>
+                <div class="game-stats">
+                    <span class="stat">⏱️ <span id="timer">00:00</span></span>
+                    <span class="stat">🔄 <span id="moves">0</span> moves</span>
+                </div>
+                <button class="preview-btn" id="previewBtn">👁️ Preview</button>
+            </div>
+            
+            <div class="game-container">
+                <div class="puzzle-area" id="puzzleArea">
+                    <canvas id="puzzleCanvas"></canvas>
+                </div>
+            </div>
+
+            <div class="game-controls">
+                <button class="control-btn" id="shuffleBtn">🔀 Shuffle</button>
+                <button class="control-btn" id="hintBtn">💡 Hint</button>
+            </div>
+            
+            <div class="attribution-container">
+                <span class="attribution" id="attribution"></span>
+            </div>
+        </div>
+
+        <!-- Victory Screen -->
+        <div id="victoryScreen" class="screen">
+            <div class="victory-container">
+                <div class="confetti" id="confetti"></div>
+                <h2>🎉 Congratulations!</h2>
+                <p class="victory-player" id="victoryPlayer"></p>
+                <div class="victory-stats">
+                    <div class="victory-stat">
+                        <span class="stat-value" id="finalTime">00:00</span>
+                        <span class="stat-label">Time</span>
+                    </div>
+                    <div class="victory-stat">
+                        <span class="stat-value" id="finalMoves">0</span>
+                        <span class="stat-label">Moves</span>
+                    </div>
+                </div>
+                <div class="victory-buttons">
+                    <button class="victory-btn" id="playAgainBtn">🔄 Play Again</button>
+                    <button class="victory-btn secondary" id="newPuzzleBtn">🧩 New Puzzle</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Preview Modal -->
+        <div id="previewModal" class="modal">
+            <div class="modal-content">
+                <img id="previewImage" src="" alt="Preview">
+                <button class="close-modal" id="closePreview">×</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="webxdc.js"></script>
+    <script src="game.js"></script>
+</body>
+</html>

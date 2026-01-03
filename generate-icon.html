@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Generate Icon</title>
+</head>
+<body>
+    <h1>Jigsaw Puzzle Icon Generator</h1>
+    <canvas id="icon" width="128" height="128"></canvas>
+    <br><br>
+    <a id="download" download="icon.png">Download icon.png</a>
+    
+    <script>
+        const canvas = document.getElementById('icon');
+        const ctx = canvas.getContext('2d');
+        
+        // Background gradient
+        const bgGrad = ctx.createLinearGradient(0, 0, 128, 128);
+        bgGrad.addColorStop(0, '#6366f1');
+        bgGrad.addColorStop(1, '#4f46e5');
+        
+        // Draw rounded rectangle background
+        ctx.beginPath();
+        ctx.roundRect(0, 0, 128, 128, 24);
+        ctx.fillStyle = bgGrad;
+        ctx.fill();
+        
+        // Piece colors
+        const colors = [
+            ['#fbbf24', '#f59e0b'],
+            ['#34d399', '#10b981'],
+            ['#f472b6', '#ec4899'],
+            ['#60a5fa', '#3b82f6']
+        ];
+        
+        // Draw puzzle pieces
+        function drawPiece(x, y, w, h, colorPair, hasRightTab, hasBottomTab, hasLeftHole, hasTopHole) {
+            const grad = ctx.createLinearGradient(x, y, x + w, y + h);
+            grad.addColorStop(0, colorPair[0]);
+            grad.addColorStop(1, colorPair[1]);
+            
+            ctx.fillStyle = grad;
+            ctx.beginPath();
+            ctx.moveTo(x, y);
+            
+            // Top edge
+            if (hasTopHole) {
+                ctx.lineTo(x + w/2 - 8, y);
+                ctx.arc(x + w/2, y, 8, Math.PI, 0, true);
+                ctx.lineTo(x + w, y);
+            } else {
+                ctx.lineTo(x + w, y);
+            }
+            
+            // Right edge
+            if (hasRightTab) {
+                ctx.lineTo(x + w, y + h/2 - 8);
+                ctx.arc(x + w, y + h/2, 8, -Math.PI/2, Math.PI/2, false);
+                ctx.lineTo(x + w, y + h);
+            } else {
+                ctx.lineTo(x + w, y + h);
+            }
+            
+            // Bottom edge
+            if (hasBottomTab) {
+                ctx.lineTo(x + w/2 + 8, y + h);
+                ctx.arc(x + w/2, y + h, 8, 0, Math.PI, false);
+                ctx.lineTo(x, y + h);
+            } else {
+                ctx.lineTo(x, y + h);
+            }
+            
+            // Left edge
+            if (hasLeftHole) {
+                ctx.lineTo(x, y + h/2 + 8);
+                ctx.arc(x, y + h/2, 8, Math.PI/2, -Math.PI/2, true);
+                ctx.lineTo(x, y);
+            } else {
+                ctx.lineTo(x, y);
+            }
+            
+            ctx.closePath();
+            ctx.fill();
+            
+            // Add subtle border
+            ctx.strokeStyle = 'rgba(255,255,255,0.3)';
+            ctx.lineWidth = 1;
+            ctx.stroke();
+        }
+        
+        // Draw 4 puzzle pieces
+        const pieceSize = 40;
+        const startX = 20;
+        const startY = 20;
+        
+        // Top-left
+        drawPiece(startX, startY, pieceSize, pieceSize, colors[0], true, true, false, false);
+        
+        // Top-right
+        drawPiece(startX + pieceSize + 8, startY, pieceSize, pieceSize, colors[1], false, true, true, false);
+        
+        // Bottom-left
+        drawPiece(startX, startY + pieceSize + 8, pieceSize, pieceSize, colors[2], true, false, false, true);
+        
+        // Bottom-right (slightly offset)
+        ctx.save();
+        ctx.translate(5, -3);
+        ctx.rotate(0.1);
+        drawPiece(startX + pieceSize + 8, startY + pieceSize + 8, pieceSize, pieceSize, colors[3], false, false, true, true);
+        ctx.restore();
+        
+        // Add shine
+        ctx.fillStyle = 'rgba(255,255,255,0.1)';
+        ctx.beginPath();
+        ctx.ellipse(45, 35, 30, 20, 0, 0, Math.PI * 2);
+        ctx.fill();
+        
+        // Create download link
+        const link = document.getElementById('download');
+        link.href = canvas.toDataURL('image/png');
+    </script>
+</body>
+</html>

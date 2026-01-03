@@ -1,0 +1,54 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128">
+  <defs>
+    <!-- Vector Theme Background - Dark gradient -->
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#161616"/>
+      <stop offset="100%" style="stop-color:#0a0a0a"/>
+    </linearGradient>
+    <!-- Vector Theme Green pieces -->
+    <linearGradient id="piece1" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#59fcb3"/>
+      <stop offset="100%" style="stop-color:#33db98"/>
+    </linearGradient>
+    <linearGradient id="piece2" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#33db98"/>
+      <stop offset="100%" style="stop-color:#2b976c"/>
+    </linearGradient>
+    <linearGradient id="piece3" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#ff2ea9"/>
+      <stop offset="100%" style="stop-color:#cc2587"/>
+    </linearGradient>
+    <linearGradient id="piece4" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#59fcb3"/>
+      <stop offset="100%" style="stop-color:#2b976c"/>
+    </linearGradient>
+  </defs>
+  
+  <!-- Background -->
+  <rect width="128" height="128" rx="24" fill="url(#bg)"/>
+  
+  <!-- Subtle border glow -->
+  <rect width="128" height="128" rx="24" fill="none" stroke="#33db98" stroke-width="2" opacity="0.3"/>
+  
+  <!-- Puzzle pieces -->
+  <!-- Top-left piece -->
+  <path d="M20 20 h25 c0 0 0 8 8 8 s8-8 8-8 h0 v25 c0 0 -8 0 -8 8 s8 8 8 8 v0 h-41 z" 
+        fill="url(#piece1)" opacity="0.95"/>
+  
+  <!-- Top-right piece -->
+  <path d="M67 20 c0 0 0 8 8 8 s8-8 8-8 h25 v41 h0 c0 0 -8 0 -8 8 s8 8 8 8 h0 v0 h-25 c0 0 0-8-8-8 s-8 8-8 8 h0 v-25 c0 0 8 0 8-8 s-8-8-8-8 z" 
+        fill="url(#piece2)" opacity="0.95"/>
+  
+  <!-- Bottom-left piece -->
+  <path d="M20 67 h0 c0 0 8 0 8 8 s-8 8-8 8 h0 v25 h41 v0 c0 0 0-8 8-8 s8 8 8 8 v0 h0 v-25 c0 0 -8 0 -8-8 s8-8 8-8 h0 v-0 h-25 c0 0 0 8-8 8 s-8-8-8-8 z" 
+        fill="url(#piece3)" opacity="0.95"/>
+  
+  <!-- Bottom-right piece (slightly offset to show it's being placed) -->
+  <g transform="translate(5, -3) rotate(5, 89, 89)">
+    <path d="M67 67 c0 0 8 0 8 8 s-8 8-8 8 v25 h41 v-41 h0 c0 0 -8 0 -8-8 s8-8 8-8 h0 z" 
+          fill="url(#piece4)" opacity="0.95"/>
+  </g>
+  
+  <!-- Subtle shine effect -->
+  <ellipse cx="45" cy="35" rx="30" ry="20" fill="#59fcb3" opacity="0.08"/>
+</svg>
